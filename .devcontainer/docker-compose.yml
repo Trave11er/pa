@@ -1,0 +1,6 @@
+services:
+  app:
+    image: ${DEVCONTAINER_IMAGE:-mcr.microsoft.com/devcontainers/python:3.12}
+    volumes:
+      - ..:/workspaces/food
+    command: sleep infinity

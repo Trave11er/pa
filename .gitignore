@@ -1,0 +1,8 @@
+.env
+*/data/*
+!*/data/.gitkeep
+*/notes/*
+!*/notes/.gitkeep
+.venv/
+uv.lock
+__pycache__

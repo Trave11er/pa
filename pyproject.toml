@@ -1,0 +1,57 @@
+# Not a package: this table only tells uv which Python the lint environment needs.
+[project]
+name = "food"
+version = "0"
+requires-python = ">=3.11"
+
+[tool.uv]
+package = false
+
+# Environment lint.sh runs in. Pins match the versions food/README.md lists, so basedpyright checks against what actually runs.
+[dependency-groups]
+lint = [
+    "numpy==1.26.4",
+    "pandas==2.1.1",
+    "scikit-learn==1.3.1",
+    "pandas-stubs<2.2",
+    "pyyaml",
+    "types-pyyaml",
+    "requests",
+    "types-requests",
+    "pytest",
+    "responses",
+    "ruff",
+    "flake8",
+    "flake8-pyproject",
+    "basedpyright",
+]
+
+[tool.flake8]
+extend-ignore = ["E501"]
+extend-exclude = ["__pycache__", ".venv"]
+
+# Run via lint.sh, whose "lint" group supplies pandas-stubs; without them pandas types are too loose to check.
+[tool.basedpyright]
+exclude = ["**/__pycache__", "**/data", ".venv"]
+# Warnings are advisory; only errors should fail lint.sh.
+failOnWarnings = false
+# pandas/sklearn/yaml values are largely untyped; these fire on nearly every line that touches them.
+reportUnknownVariableType = false
+reportUnknownArgumentType = false
+reportUnknownMemberType = false
+reportUnknownParameterType = false
+reportUnknownLambdaType = false
+reportMissingTypeStubs = false
+reportAny = false
+reportExplicitAny = false
+# Scripts and tests are deliberately light on annotations.
+reportMissingParameterType = false
+reportUnannotatedClassAttribute = false
+# Discarded return values (f.write, parser.add_argument, ...) are normal here.
+reportUnusedCallResult = false
+# Wrapping a long message over adjacent literals is the house style.
+reportImplicitStringConcatenation = false
+
+# Root on sys.path so tests/ can import core, connectors and the root CLIs.
+[tool.pytest.ini_options]
+pythonpath = ["."]
