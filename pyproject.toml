@@ -1,13 +1,13 @@
 # Not a package: this table only tells uv which Python the lint environment needs.
 [project]
-name = "food"
+name = "pa"
 version = "0"
 requires-python = ">=3.11"
 
 [tool.uv]
 package = false
 
-# Environment lint.sh runs in. Pins match the versions food/README.md lists, so basedpyright checks against what actually runs.
+# Environment lint.sh runs in. Pins match the versions food/README.md and coach/README.md list, so basedpyright checks against what actually runs.
 [dependency-groups]
 lint = [
     "numpy==1.26.4",
@@ -20,6 +20,7 @@ lint = [
     "types-requests",
     "pytest",
     "responses",
+    "garminconnect==0.3.2",
     "ruff",
     "flake8",
     "flake8-pyproject",

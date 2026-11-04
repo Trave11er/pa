@@ -2,8 +2,8 @@
   "name": "food",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/food",
-  "postCreateCommand": "pip install uv && curl -fsSL https://claude.ai/install.sh | bash",
+  "workspaceFolder": "/workspace",
+  "postStartCommand": "uv sync --group lint",
   "customizations": {
     "vscode": {
       "extensions": [

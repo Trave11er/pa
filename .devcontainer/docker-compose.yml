@@ -1,6 +1,11 @@
 services:
   app:
-    image: ${DEVCONTAINER_IMAGE:-mcr.microsoft.com/devcontainers/python:3.12}
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: ${DEVCONTAINER_IMAGE:-mcr.microsoft.com/devcontainers/python:3.12}
+    image: pa:latest
     volumes:
-      - ..:/workspaces/food
+      - ..:/workspace
     command: sleep infinity

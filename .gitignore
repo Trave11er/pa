@@ -6,3 +6,5 @@
 .venv/
 uv.lock
 __pycache__
+agents
+agents_output
